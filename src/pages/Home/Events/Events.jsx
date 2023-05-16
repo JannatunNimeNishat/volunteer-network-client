@@ -14,8 +14,8 @@ const Events = () => {
     }
     
     return (
-        <div className='my-container mt-[-100px]'>
-            <div className='grid grid-cols-4 gap-6'>
+        <div className='my-container lg:mt-[-100px]'>
+            <div className='grid  grid-cols-1 lg:grid-cols-4 gap-6 pt-3 lg-pt-0'>
             {
                 events.map((event) => (<Event
                     key={event._id}

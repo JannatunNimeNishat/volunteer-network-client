@@ -2,11 +2,13 @@ import React from 'react';
 import Home from '../pages/Home/Home/Home';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../pages/share/Navbar/Navbar';
+import Banner from '../pages/Home/Banner/Banner';
 
 const Main = () => {
     return (
         <div className='relative'>
-            <Navbar className='absolute top-0 right-1'></Navbar>
+            <Navbar ></Navbar>
+            
             <Outlet></Outlet>
         </div>
     );

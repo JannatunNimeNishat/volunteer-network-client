@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logos/logo.png'
 import Banner from '../../Home/Banner/Banner';
+import { AuthContext } from '../../../provider/AuthProvider';
 const Navbar = () => {
-    
+    const {user,logout} = useContext(AuthContext);
+    console.log(user);
+    const handleLogOut = ()=>{
+        logout()
+        .then(()=>{
+
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
+    }
     const navItems = <>
      <li><Link to='/'>Home</Link></li>
      <li><Link to='/destination'>Destination</Link></li>
@@ -12,7 +23,7 @@ const Navbar = () => {
     </>
     return (
         <>
-        <div className="navbar lg:text-white  font-bold mt-3 px-8  lg:absolute">
+        <div className="navbar lg:text-white  font-bold px-8  lg:absolute">
             <div className="navbar-start ">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -35,13 +46,18 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
-                <Link to='/login' className="btn">Login</Link>
+                {
+                    user ? 
+                    <Link onClick={handleLogOut} to='/' className="btn">Logout</Link>
+                    :
+                    <Link to='/login' className="btn">Login</Link>
+                }
                 <Link to='/admin' className="btn">Admin</Link>
             </div>
         </div>
 
         {/* benner */}
-        <Banner className='static lg:relative'></Banner>
+        {/* <Banner className='static lg:relative'></Banner> */}
         </>
     );
 };
