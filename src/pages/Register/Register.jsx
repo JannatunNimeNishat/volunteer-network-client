@@ -54,7 +54,7 @@ const Register = () => {
                     <input className='w-full py-2 px-3  mt-5 cursor-pointer rounded text-white text-center font-bold bg-sky-600 hover:bg-sky-700' type="submit" value="Register" />
 
 
-                    <p className='mt-3 text-center'>Already have an account ? <Link to='/login'>Login</Link></p>
+                    {/* <p className='mt-3 text-center'>Already have an account ? <Link to='/login'>Login</Link></p> */}
                 </form>
 
 
