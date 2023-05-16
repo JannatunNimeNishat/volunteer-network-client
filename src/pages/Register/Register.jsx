@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
-
+import Swal from 'sweetalert2'
 const Register = () => {
     const { signIn } = useContext(AuthContext)
     const handleGoogleSingIn = (event) => {
@@ -17,14 +17,27 @@ const Register = () => {
             name, email, date, description, library
         }
         console.log(newUser);
-
-       /*  signIn(email, password)
-            .then(result => {
-                console.log(result.user);
-            })
-            .catch(error => {
-                console.log(error.message);
-            }) */
+        fetch('http://localhost:5000/volunteers',{
+            method:"POST",
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
+        .then(res=>res.json())
+        .then(data =>{
+            console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Successfully registered',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+       
 
     }
 
